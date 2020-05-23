@@ -7,9 +7,13 @@ import socket_utils
 HOST = "127.0.0.1"         # The server's hostname or IP address.
 PORT = 63000               # The port used by the server.
 ADDRESS = (HOST, PORT)
+carid = 1
 
 def main():
-    user = { "username": "seth", "password": "testing", "carid": "1"}
+    
+    username = input("Enter username:")
+    password = input("Enter password:")
+    user = { "username": username, "password": password, "cardid": carid}
     login(user)
 
 def login(user):

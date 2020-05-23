@@ -23,12 +23,11 @@ def main():
                 print()
 
                 user = socket_utils.recvJson(conn)
-    
                 
                 if (user["username"] == "seth" and user["password"] == "testing"):
                     socket_utils.sendJson(conn, { "authenticated": True })
                 else:
-                    socket_utils.sendJson(conn, { "authenticated": False })
+                    socket_utils.sendJson(conn, { "nope": True })
 
 
 # Execute program.
