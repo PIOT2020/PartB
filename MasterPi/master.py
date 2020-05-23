@@ -3,6 +3,7 @@
 import socket, json, sys
 sys.path.append("..")
 import socket_utils
+import requests
 
 HOST = ""    # Empty string means to listen on all IP's on the machine, also works with IPv6.
              # Note "0.0.0.0" also works but only with IPv4.
@@ -23,8 +24,14 @@ def main():
                 print()
 
                 user = socket_utils.recvJson(conn)
+
+                response = requests.get(("http://192.168.1.126:5000/api/findBooking"), params = {
+                    'username' : user["username"], 
+                    'password' : user["password"],
+                    'carid' : user["carid"]
+                })
                 
-                if (user["username"] == "seth" and user["password"] == "testing"):
+                if (response):
                     socket_utils.sendJson(conn, { "authenticated": True })
                 else:
                     socket_utils.sendJson(conn, { "nope": True })

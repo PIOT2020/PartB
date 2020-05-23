@@ -13,7 +13,7 @@ def main():
     
     username = input("Enter username:")
     password = input("Enter password:")
-    user = { "username": username, "password": password, "cardid": carid}
+    user = { "username": username, "password": password, "carid": carid}
     login(user)
 
 def login(user):
