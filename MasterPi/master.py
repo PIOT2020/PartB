@@ -16,7 +16,7 @@ def main():
 
         print("Listening on {}...".format(ADDRESS))
         while True:
-            print("Waiting for Reception Pi...")
+            print("Waiting for Agent Pi...")
             conn, addr = s.accept()
             with conn:
                 print("Connected to {}".format(addr))
