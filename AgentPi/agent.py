@@ -13,7 +13,7 @@ def main():
     
     username = input("Enter username:")
     password = input("Enter password:")
-    user = { "username": username, "password": password, "carid": carid}
+    user = { "username": username, "password": password, "carid": carid, "finish": 0}
     login(user)
 
 def login(user):
@@ -29,8 +29,11 @@ def login(user):
         while(True):
             object = socket_utils.recvJson(s)
             if("authenticated" in object):
-                print("Welcome")
+                print("Car Unlocked")
                 print()
+                input("Press Enter to return vehicle...")
+                user["finish"] = 1
+                socket_utils.sendJson(s, user)
                 break
             else:
                 print("Wrong Username or Password")

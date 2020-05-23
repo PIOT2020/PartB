@@ -25,24 +25,26 @@ def main():
 
                 user = socket_utils.recvJson(conn)
 
-                if (user["password"] == "none"):
-                    response = requests.get(("http://192.168.1.126:5000/api/findBooking2"), params = {
+                param = {
                         'username' : user["username"], 
                         'password' : user["password"],
                         'carid' : user["carid"]
-                    })
+                }
+
+                if (user["finish"] == 0):
+                    if (user["password"] == "none"):
+                        response = requests.get(("http://192.168.1.126:5000/api/findBooking2"), params = param)
+
+                    else:
+                        response = requests.get(("http://192.168.1.126:5000/api/findBooking"), params = param)
+                    
+                    if (response):
+                        socket_utils.sendJson(conn, { "authenticated": True })
+                    else:
+                        socket_utils.sendJson(conn, { "nope": True })
 
                 else:
-                    response = requests.get(("http://192.168.1.126:5000/api/findBooking"), params = {
-                        'username' : user["username"], 
-                        'password' : user["password"],
-                        'carid' : user["carid"]
-                    })
-                
-                if (response):
-                    socket_utils.sendJson(conn, { "authenticated": True })
-                else:
-                    socket_utils.sendJson(conn, { "nope": True })
+                    response = requests.get(("http://192.168.1.126:5000/api/returnCar"), params = param)
 
 
 # Execute program.
