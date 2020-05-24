@@ -11,7 +11,6 @@ ADDRESS = (HOST, PORT)
 carid = 1
 
 def main():
-    today = date.today()
     username = input("Enter username:")
     password = input("Enter password:")
     user = { "username": username, "password": password, "carid": carid, "finish": 0, "date": str(datetime.now())}
