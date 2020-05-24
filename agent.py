@@ -11,12 +11,17 @@ ADDRESS = (HOST, PORT)
 carid = 1
 
 def main():
+    """Main Function prompting the user to enter their Username and Password"""
     username = input("Enter username:")
     password = input("Enter password:")
     user = { "username": username, "password": password, "carid": carid, "finish": 0, "date": str(datetime.now())}
     login(user)
 
 def login(user):
+    """
+ - Prompts the user to Login and connects with Master Pi
+ - Gives the user 2 options with their car
+ - Either to Unlock or Return"""
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         print("Connecting to {}...".format(ADDRESS))
         s.connect(ADDRESS)

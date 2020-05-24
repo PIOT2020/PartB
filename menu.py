@@ -2,12 +2,19 @@ import time
 import sys #this allows you to use the sys.exit command to quit/logout of the application
 import agent
 
+def main():
+    """Main function which runs the menu() function to display details on console"""
+    menu()
+
 def credentials():
+    """Runs the agent.py code"""
     agent.main()
 def faceRecog():
+    """Runs the facial recognition code"""
     import recognise
 
 def menu():
+    """Prints out a menu which prompts the user to either login with credentials or face scan"""
     print(" Welcome!")
     time.sleep(1)
 
@@ -27,4 +34,6 @@ Please choose to either:
         print(" Please try again\n")
         menu()
 
-menu()
+# Execute program.
+if __name__ == "__main__":
+    main()

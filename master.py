@@ -11,6 +11,10 @@ PORT = 63000 # Port to listen on (non-privileged ports are > 1023).
 ADDRESS = (HOST, PORT)
 
 def main():
+    """
+ - Authenticates connection with the Agent Pi
+ - Receives credentials such as Username and Password from AgentPi and authenticates it
+ - Returns authenticated credentials allowing AgentPi access to log in"""
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(ADDRESS)
         s.listen()
