@@ -30,21 +30,31 @@ def main():
                         'password' : user["password"],
                         'carid' : user["carid"]
                 }
+                print(user["date"])
 
                 if (user["finish"] == 0):
                     if (user["password"] == "none"):
-                        response = requests.get(("http://192.168.1.126:5000/api/findBooking2"), params = param)
+                        response = requests.get(("http://220.244.177.218:5000/api/findBooking2"), params = param)
+                        print(response.text)
 
                     else:
-                        response = requests.get(("http://192.168.1.126:5000/api/findBooking"), params = param)
-                    
-                    if (response):
+                        response = requests.get(("http://220.244.177.218:5000/api/findBooking"), params = param)
+                        print(response.text)
+
+                    if (response.text == "True"):
                         socket_utils.sendJson(conn, { "authenticated": True })
                     else:
                         socket_utils.sendJson(conn, { "nope": True })
 
                 else:
-                    response = requests.get(("http://192.168.1.126:5000/api/returnCar"), params = param)
+                    response = requests.get(("http://220.244.177.218:5000/api/returnCar"), params = param)
+                    if (response.text == "True"):
+                        socket_utils.sendJson(conn, { "returned": True })
+                    else:
+                        socket_utils.sendJson(conn, { "nobooking": True })
+
+                   
+
 
 
 # Execute program.
